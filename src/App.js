@@ -4,18 +4,21 @@ import axios from "axios";
 
 export default function App() {
   var [planet, setPlanet] = useState(null);
-  var [btn, setBtn] = useState(null);
 
   const url = "https://assignment-machstatz.herokuapp.com/planet";
   const fetchData = async () => {
     const response = await axios.get(url);
     setPlanet(response.data);
+    console.log(response.data);
   };
 
-  function fetchFavourite(event) {
-    if (event.target.id === "btn2") {
-      setBtn(event.target.id);
-      console.log(btn);
+  function fetchFavourite() {
+    if (planet != null) {
+      planet.map((item, index) => {
+        if (item.isFavourite === false) {
+          document.getElementById(index).style.display = "none";
+        }
+      });
     }
   }
 
@@ -57,23 +60,6 @@ export default function App() {
             );
           })}
       </div>
-      {
-        // if(btn==="btn2") {
-
-        // }
-        <div id="fav">
-          {planet &&
-            planet.map((plan, index) => {
-              const name = plan.name;
-              return (
-                <li id={index} key={name} onClick={planetClickedHandler}>
-                  <div className="tick-mark"></div>
-                  {name}
-                </li>
-              );
-            })}
-        </div>
-      }
     </div>
   );
 }

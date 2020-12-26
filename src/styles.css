@@ -55,8 +55,11 @@ li {
 li .tick-mark {
   visibility: hidden;
 }
-.fav {
-  height: 800px;
-  width: 800px;
-  background-color: #4169e1;
+.hide {
+  display: none;
 }
+/* .favc{
+  height: 200px;
+  width: 300px;
+  background-color: #4169e1;
+} */
