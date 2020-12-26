@@ -56,7 +56,7 @@ export default function App() {
   }
   return (
     <div className="App">
-      <div>
+      <div className="btns">
         <button id="btn1" className="btn" onClick={show}>
           All planet
         </button>

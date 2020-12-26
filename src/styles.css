@@ -56,3 +56,9 @@ li {
 li .tick-mark {
   display: none;
 }
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
