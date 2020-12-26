@@ -6,11 +6,26 @@ export default function App() {
   var [planet, setPlanet] = useState(null);
 
   const url = "https://assignment-machstatz.herokuapp.com/planet";
-  const fetchData = async () => {
+  const fetchData = async (event) => {
     const response = await axios.get(url);
     setPlanet(response.data);
     console.log(response.data);
   };
+  function show(event) {
+    fetchData();
+    if (planet != null) {
+      planet.map((item, index) => {
+        var listElement = document.getElementById(index);
+        listElement.style.display = "block";
+        // listElement.style.gap = "3rem";
+        if (item.isFavourite === true) {
+          var childs = listElement.children;
+          console.log(childs[0]);
+          childs[0].style.display = "none";
+        }
+      });
+    }
+  }
 
   function fetchFavourite() {
     if (planet != null) {
@@ -25,23 +40,24 @@ export default function App() {
   function planetClickedHandler(event) {
     var index = event.target.id;
     var childs = event.target.childNodes;
+    console.log(childs);
     var flag = planet[index].isFavourite;
     if (!flag) {
       planet[index].isFavourite = true;
       console.log(childs[0]);
-      childs[0].style.visibility = "visible";
+      childs[0].style.display = "inline-block";
       return;
     } else {
       planet[index].isFavourite = false;
       console.log(childs[0]);
-      childs[0].style.visibility = "hidden";
+      childs[0].style.display = "none";
       return;
     }
   }
   return (
     <div className="App">
       <div>
-        <button id="btn1" className="btn" onClick={fetchData}>
+        <button id="btn1" className="btn" onClick={show}>
           All planet
         </button>
         <button id="btn2" className="btn" onClick={fetchFavourite}>

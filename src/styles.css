@@ -23,7 +23,7 @@ li {
   display: flex;
   justify-content: left;
   align-items: center;
-  gap: 2rem;
+  /* gap: 3rem; */
   color: white;
 }
 .tick-mark {
@@ -31,6 +31,7 @@ li {
   display: inline-block;
   height: 2rem;
   width: 2rem;
+  background-color: red;
 }
 .tick-mark::before {
   position: absolute;
@@ -53,13 +54,5 @@ li {
   transform-origin: left bottom;
 }
 li .tick-mark {
-  visibility: hidden;
-}
-.hide {
   display: none;
 }
-/* .favc{
-  height: 200px;
-  width: 300px;
-  background-color: #4169e1;
-} */
