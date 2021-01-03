@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
 
 export default function App() {
   var [planet, setPlanet] = useState(null);
-
   const url = "https://assignment-machstatz.herokuapp.com/planet";
   const fetchData = async (event) => {
     const response = await axios.get(url);
     setPlanet(response.data);
-    console.log(response.data);
   };
-  function show(event) {
+  useEffect(() => {
     fetchData();
+  }, []);
+  function show(event) {
     var btnList = document.getElementsByClassName("btn");
     for (var i = 0; i < btnList.length; i++) {
       deSelect(btnList[i]);
@@ -21,13 +21,8 @@ export default function App() {
     allButton.classList.add("btn-active");
     if (planet != null) {
       planet.map((item, index) => {
-        var listElement = document.getElementById(index);
-        listElement.style.display = "block";
-        // listElement.style.gap = "3rem";
-        if (item.isFavourite === true) {
-          var childs = listElement.children;
-          console.log(childs[0]);
-          childs[0].style.display = "none";
+        if (item.isFavourite === false) {
+          document.getElementById(index).classList.remove("hide");
         }
       });
     }
@@ -46,7 +41,7 @@ export default function App() {
     if (planet != null) {
       planet.map((item, index) => {
         if (item.isFavourite === false) {
-          document.getElementById(index).style.display = "none";
+          document.getElementById(index).classList.add("hide");
         }
       });
     }
@@ -54,18 +49,15 @@ export default function App() {
 
   function planetClickedHandler(event) {
     var index = event.target.id;
-    var childs = event.target.childNodes;
-    console.log(childs);
+    var childs = event.target.children;
     var flag = planet[index].isFavourite;
     if (!flag) {
       planet[index].isFavourite = true;
-      console.log(childs[0]);
-      childs[0].style.display = "inline-block";
+      childs[0].style.visibility = "visible";
       return;
     } else {
       planet[index].isFavourite = false;
-      console.log(childs[0]);
-      childs[0].style.display = "none";
+      childs[0].style.visibility = "hidden";
       return;
     }
   }
@@ -89,7 +81,7 @@ export default function App() {
             return (
               <li id={index} key={name} onClick={planetClickedHandler}>
                 <div className="tick-mark"></div>
-                <span>{name}</span>
+                {name}
               </li>
             );
           })}
