@@ -1,27 +1,19 @@
-.App {
+body {
+  margin: 0;
   font-family: sans-serif;
-  text-align: center;
-}
-button {
-  padding: 0.5rem 2rem;
-  background-color: #4169e1;
-  border: none;
-  color: white;
-  margin: 0 0.5rem;
-  font-size: 1.2rem;
 }
 ul {
   list-style-type: none;
 }
 li {
   padding: 1rem 2rem;
-  background-color: #4169e1;
+  background-color: #4338ca;
   margin: 0.5rem;
   cursor: pointer;
   text-align: left;
   font-size: 2rem;
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
   /* gap: 3rem; */
   color: white;
@@ -56,9 +48,32 @@ li {
 li .tick-mark {
   display: none;
 }
-.btns {
+.tab-view {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: nowrap;
+  border-top: 1px rgba(255, 255, 255, 0.3) solid;
+}
+.nav {
+  background-color: #4f46e5;
+  padding: 1rem 0 0 1rem;
+}
+.nav-heading {
+  color: white;
+  font-size: 1.5rem;
+}
+.btn {
+  background-color: #4f46e5;
+  cursor: pointer;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  color: white;
+}
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.btn-active {
+  background-color: #4338ca;
 }

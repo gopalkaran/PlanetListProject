@@ -13,6 +13,12 @@ export default function App() {
   };
   function show(event) {
     fetchData();
+    var btnList = document.getElementsByClassName("btn");
+    for (var i = 0; i < btnList.length; i++) {
+      deSelect(btnList[i]);
+    }
+    var allButton = event.target;
+    allButton.classList.add("btn-active");
     if (planet != null) {
       planet.map((item, index) => {
         var listElement = document.getElementById(index);
@@ -26,8 +32,17 @@ export default function App() {
       });
     }
   }
+  function deSelect(element) {
+    element.classList.remove("btn-active");
+  }
 
-  function fetchFavourite() {
+  function fetchFavourite(event) {
+    var btnList = document.getElementsByClassName("btn");
+    for (var i = 0; i < btnList.length; i++) {
+      deSelect(btnList[i]);
+    }
+    var favButton = event.target;
+    favButton.classList.add("btn-active");
     if (planet != null) {
       planet.map((item, index) => {
         if (item.isFavourite === false) {
@@ -56,13 +71,16 @@ export default function App() {
   }
   return (
     <div className="App">
-      <div className="btns">
-        <button id="btn1" className="btn" onClick={show}>
-          All planet
-        </button>
-        <button id="btn2" className="btn" onClick={fetchFavourite}>
-          Favourite planet
-        </button>
+      <div className="nav">
+        <div className="nav-heading">PlanetList</div>
+        <div className="tab-view">
+          <button className="btn" onClick={show}>
+            All planet
+          </button>
+          <button className="btn" onClick={fetchFavourite}>
+            Favourite planet
+          </button>
+        </div>
       </div>
       <div id="all" className="planet">
         {planet &&
@@ -71,7 +89,7 @@ export default function App() {
             return (
               <li id={index} key={name} onClick={planetClickedHandler}>
                 <div className="tick-mark"></div>
-                {name}
+                <span>{name}</span>
               </li>
             );
           })}
