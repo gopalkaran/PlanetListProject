@@ -48,16 +48,16 @@ export default function App() {
   }
 
   function planetClickedHandler(event) {
-    var index = event.target.id;
-    var childs = event.target.children;
-    var flag = planet[index].isFavourite;
+    var element = event.target;
+    var parent = event.target.parentElement;
+    var flag = planet[parent.id].isFavourite;
     if (!flag) {
-      planet[index].isFavourite = true;
-      childs[0].style.visibility = "visible";
+      planet[parent.id].isFavourite = true;
+      element.style.setProperty("--fav", "#DC2626");
       return;
     } else {
-      planet[index].isFavourite = false;
-      childs[0].style.visibility = "hidden";
+      planet[parent.id].isFavourite = false;
+      element.style.setProperty("--fav", "white");
       return;
     }
   }
@@ -74,17 +74,23 @@ export default function App() {
           </button>
         </div>
       </div>
-      <div id="all" className="planet">
-        {planet &&
-          planet.map((plan, index) => {
-            const name = plan.name;
-            return (
-              <li id={index} key={name} onClick={planetClickedHandler}>
-                <div className="tick-mark"></div>
-                {name}
-              </li>
-            );
-          })}
+      <div className="planet">
+        <h3>
+          Click on the heart to create your fav list and click again to remove
+          from fav list and see your favourited list clicking favourite planet
+        </h3>
+        <ul>
+          {planet &&
+            planet.map((plan, index) => {
+              const name = plan.name;
+              return (
+                <li id={index} key={name}>
+                  <div id="heart" onClick={planetClickedHandler}></div>
+                  {name}
+                </li>
+              );
+            })}
+        </ul>
       </div>
     </div>
   );

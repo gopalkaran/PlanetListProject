@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
-
+:root {
+  --fav: white;
+}
 body {
   margin: 0;
   font-family: Raleway;
@@ -8,50 +10,25 @@ body {
   max-width: 500px;
   margin: auto;
 }
+.planet h3 {
+  text-align: center;
+}
 ul {
   list-style-type: none;
+  padding-inline-start: 0;
 }
 li {
   padding: 1rem 2rem;
   background-color: #4f46e5;
-  margin: 0.5rem;
+  margin: 0.5rem auto;
   cursor: pointer;
-  text-align: left;
   font-size: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
   border-radius: 30px;
-}
-li .tick-mark {
-  visibility: hidden;
-}
-.tick-mark {
-  position: relative;
-  display: inline-block;
-  height: 2rem;
-  width: 2rem;
-}
-.tick-mark::before {
-  position: absolute;
-  top: 50%;
-  height: 50%;
-  width: 3px;
-  background-color: white;
-  content: "";
-  transform: translateX(10px) rotate(-45deg);
-  transform-origin: left bottom;
-}
-.tick-mark::after {
-  position: absolute;
-  background-color: white;
-  bottom: 0;
-  width: 100%;
-  height: 3px;
-  content: "";
-  transform: translateX(10px) rotate(-45deg);
-  transform-origin: left bottom;
+  max-width: 300px;
 }
 .tab-view {
   display: flex;
@@ -85,4 +62,30 @@ li .tick-mark {
 }
 .hide {
   display: none;
+}
+#heart {
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+#heart::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 30px;
+  border-radius: 50px 50px 0 0;
+  background: var(--fav);
+  transform: translateX(6px) rotate(-45deg);
+  top: 4px;
+}
+#heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 30px;
+  border-radius: 50px 50px 0 0;
+  background: var(--fav);
+  transform: translateX(13px) rotate(45deg);
+  top: 4px;
 }
