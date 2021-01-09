@@ -28,7 +28,7 @@ li {
   align-items: center;
   color: white;
   border-radius: 30px;
-  max-width: 300px;
+  width: 60%;
 }
 .tab-view {
   display: flex;
